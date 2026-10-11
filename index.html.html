@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Timeline of the CLC Presidential Search</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --page: #f4f6f5;
+    --card: #ffffff;
+    --ink: #17211b;
+    --muted: #55645b;
+    --line: #d9e0dc;
+    --head: #0a3d24;
+    --g1: #0e9a4c;
+    --g2: #0a5430;
+    --tint: #eaf5ee;
+    --accent-text: #0a5430;
+    --on-dark: #ffffff;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --page: #0b120e; --card: #121c16; --ink: #eaf1ec; --muted: #9fb0a5; --line: #26352c;
+      --head: #0a2416; --g1: #2fbf71; --g2: #1a7a47; --tint: #19291f; --accent-text: #6fdc9f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --page: #0b120e; --card: #121c16; --ink: #eaf1ec; --muted: #9fb0a5; --line: #26352c;
+    --head: #0a2416; --g1: #2fbf71; --g2: #1a7a47; --tint: #19291f; --accent-text: #6fdc9f;
+  }
+
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--page); color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent-text); }
+  button { font: inherit; color: inherit; }
+
+  /* Disclaimer */
+  .disclaimer { background: #fff3cd; color: #3d2e00; border-bottom: 1px solid #e6cf80; }
+  .disclaimer-inner { max-width: 1240px; margin: 0 auto; padding: 10px 24px; font-size: 0.9rem; line-height: 1.45; }
+  .disclaimer strong { font-weight: 700; }
+  .disclaimer-foot { margin: 0 0 12px; padding: 12px 16px; background: #fff3cd; color: #3d2e00; border: 1px solid #e6cf80; border-radius: 6px; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .disclaimer, :root:not([data-theme="light"]) .disclaimer-foot { background: #3a2f0b; color: #f5e6b0; border-color: #6b5a1c; }
+  }
+  :root[data-theme="dark"] .disclaimer, :root[data-theme="dark"] .disclaimer-foot { background: #3a2f0b; color: #f5e6b0; border-color: #6b5a1c; }
+
+  /* Header band */
+  .masthead { background: var(--head); color: var(--on-dark); }
+  .masthead-inner {
+    max-width: 1240px; margin: 0 auto; padding: 32px 24px 30px;
+    display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 32px;
+    border-bottom: 4px solid var(--g1);
+  }
+  .masthead p { margin: 0 0 4px; font-size: 0.95rem; opacity: 0.8; }
+  .masthead h1 { margin: 0; font-size: clamp(1.5rem, 3vw, 2.15rem); font-weight: 600; letter-spacing: -0.005em; }
+  .masthead a { color: var(--on-dark); font-size: 0.9rem; opacity: 0.9; }
+
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 28px 24px 56px; }
+
+  /* Status summary */
+  .summary-strip {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px; margin-bottom: 20px;
+  }
+  .stat { padding: 16px 22px; border-left: 1px solid var(--line); }
+  .stat:first-child { border-left: 0; }
+  .stat .k { font-size: 0.85rem; color: var(--muted); margin: 0 0 2px; }
+  .stat .v { font-size: 1.05rem; font-weight: 600; margin: 0; }
+  .stat .s { font-size: 0.88rem; color: var(--muted); margin: 0; }
+
+  /* Timeline */
+  .timeline-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 6px;
+    padding: 24px 8px 20px; overflow-x: auto; margin-bottom: 20px;
+  }
+  .timeline-head { display: flex; justify-content: space-between; align-items: baseline; padding: 0 20px 14px; flex-wrap: wrap; gap: 4px 16px; }
+  .timeline-head h2 { margin: 0; font-size: 1rem; font-weight: 600; }
+  .timeline-head span { font-size: 0.88rem; color: var(--muted); }
+
+  .timeline-inner { position: relative; min-width: 980px; padding: 0 8px; }
+  .bar {
+    position: absolute; left: calc(8px + (100% - 16px) / 16); right: 8px;
+    top: 83px; height: 8px; display: flex; z-index: 0;
+  }
+  .seg { flex: 1; background: var(--g1); }
+  .seg:nth-child(even) { background: var(--g2); }
+  .seg.last { flex: 0.5; }
+  .seg.future { opacity: 0.35; }
+
+  .nodes { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); margin: 0; padding: 0; }
+  .node {
+    display: grid; grid-template-rows: 66px 34px auto; justify-items: center;
+    background: none; border: 0; padding: 0 8px 4px; cursor: pointer; text-align: center; border-radius: 6px;
+  }
+  .node:focus-visible { outline: 3px solid var(--g1); outline-offset: 2px; }
+
+  .lab { grid-row: 1; align-self: end; display: flex; flex-direction: column; align-items: center; gap: 4px; padding-bottom: 8px; }
+  .pill {
+    font-weight: 600; font-size: 0.98rem; padding: 3px 12px; border-radius: 999px; border: 1.5px solid transparent;
+    transition: background .15s, color .15s;
+  }
+  .node:hover .pill { border-color: var(--g2); }
+  .node[aria-selected="true"] .pill { background: var(--g2); color: #fff; border-color: var(--g2); }
+  .here { font-size: 0.78rem; font-weight: 600; color: var(--accent-text); height: 1.1em; line-height: 1.1; }
+
+  .dot-row { grid-row: 2; display: flex; align-items: center; justify-content: center; }
+  .dot { width: 18px; height: 18px; border-radius: 50%; background: var(--ink); border: 3px solid var(--ink); transition: transform .2s, box-shadow .2s; }
+  .node.upcoming .dot { background: var(--card); }
+  .node.current .dot { background: var(--g1); }
+  .node[aria-selected="true"] .dot { transform: scale(1.3); box-shadow: 0 0 0 4px var(--card), 0 0 0 6px var(--g1); }
+
+  .cap { grid-row: 3; font-size: 0.84rem; line-height: 1.4; color: var(--muted); padding-top: 12px; max-width: 150px; }
+  .node[aria-selected="true"] .cap { color: var(--ink); font-weight: 500; }
+
+  /* Detail */
+  .detail { background: var(--card); border: 1px solid var(--line); border-radius: 6px; border-top: 4px solid var(--g1); }
+  .detail-head {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px;
+    padding: 20px 28px; border-bottom: 1px solid var(--line); background: var(--tint);
+  }
+  .detail-head h2 { margin: 0; font-size: clamp(1.15rem, 2vw, 1.4rem); font-weight: 600; }
+  .when { margin: 0 0 0 auto; color: var(--muted); font-weight: 500; font-size: 0.95rem; }
+  .chip { font-size: 0.8rem; font-weight: 600; padding: 2px 10px; border-radius: 4px; border: 1px solid var(--g2); color: var(--accent-text); }
+  .chip.current { background: var(--g2); color: #fff; }
+
+  .detail-body { display: grid; gap: 0; }
+  .detail-body.cols-3 { grid-template-columns: 1fr 1.1fr 1fr; }
+  .detail-body.cols-2 { grid-template-columns: 1fr 1.2fr; }
+  .col { padding: 24px 28px; border-left: 1px solid var(--line); min-width: 0; }
+  .col:first-child { border-left: 0; }
+  h3 { margin: 0 0 12px; font-size: 0.95rem; font-weight: 600; color: var(--accent-text); }
+  .overview p { margin: 0 0 14px; }
+  .note { font-size: 0.9rem; color: var(--muted); }
+
+  table.facts { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+  .facts td { padding: 10px 0; border-top: 1px solid var(--line); vertical-align: top; }
+  .facts tr:first-child td { border-top: 0; padding-top: 0; }
+  .facts td.d { width: 84px; font-weight: 600; padding-right: 12px; white-space: nowrap; }
+
+  .tabs { display: inline-flex; border: 1px solid var(--g2); border-radius: 4px; overflow: hidden; margin-bottom: 12px; }
+  .tab { border: 0; background: transparent; padding: 5px 14px; font-weight: 600; font-size: 0.88rem; cursor: pointer; }
+  .tab + .tab { border-left: 1px solid var(--g2); }
+  .tab[aria-pressed="true"] { background: var(--g2); color: #fff; }
+  .tab:focus-visible { outline: 3px solid var(--g1); outline-offset: -3px; }
+  .charge { margin: 0 0 12px; color: var(--muted); font-size: 0.88rem; }
+  .people { list-style: none; margin: 0; padding: 0; max-height: 300px; overflow-y: auto; }
+  .people li { padding: 7px 0; border-top: 1px solid var(--line); font-size: 0.9rem; }
+  .people li:first-child { border-top: 0; padding-top: 0; }
+  .people b { display: block; font-weight: 600; }
+  .people span { color: var(--muted); }
+
+  .nav { display: flex; justify-content: space-between; padding: 16px 28px; border-top: 1px solid var(--line); background: var(--page); border-radius: 0 0 6px 6px; }
+  .nav button { border: 1px solid var(--g2); background: var(--card); border-radius: 4px; padding: 7px 18px; font-weight: 600; font-size: 0.92rem; cursor: pointer; }
+  .nav button:hover:not(:disabled) { background: var(--g2); color: #fff; }
+  .nav button:disabled { opacity: 0.35; cursor: default; }
+  .nav button:focus-visible { outline: 3px solid var(--g1); outline-offset: 2px; }
+
+  footer { margin-top: 20px; font-size: 0.85rem; color: var(--muted); }
+
+  .detail.swap { animation: swap .22s ease-out; }
+  @keyframes swap { from { opacity: 0.5; } to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .detail.swap { animation: none; } .dot, .pill { transition: none; } }
+
+  @media (max-width: 920px) {
+    .wrap { padding: 20px 14px 40px; }
+    .summary-strip { grid-template-columns: 1fr; }
+    .stat { border-left: 0; border-top: 1px solid var(--line); }
+    .stat:first-child { border-top: 0; }
+    .detail-body.cols-3, .detail-body.cols-2 { grid-template-columns: 1fr; }
+    .col { border-left: 0; border-top: 1px solid var(--line); padding: 20px; }
+    .col:first-child { border-top: 0; }
+    .detail-head { padding: 16px 20px; }
+    .when { margin-left: 0; width: 100%; }
+    .nav { padding: 14px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="disclaimer" role="note">
+  <div class="disclaimer-inner"><strong>Unofficial student project.</strong> This website was made by a student and is not an official website of the College of Lake County. For official information, visit the <a href="https://www.clcillinois.edu/aboutclc/college-leadership/presidential-search" target="_blank" rel="noopener">CLC presidential search page</a>.</div>
+</div>
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <p>College of Lake County</p>
+      <h1>Timeline of the CLC Presidential Search</h1>
+    </div>
+    <a href="https://www.clcillinois.edu/aboutclc/college-leadership/presidential-search" target="_blank" rel="noopener">Official presidential search page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="summary-strip" id="summary" aria-label="Search status"></section>
+
+  <section class="timeline-card" aria-label="Presidential search timeline">
+    <div class="timeline-head">
+      <h2>Search milestones, July 2026 to July 2027</h2>
+      <span>Select a month to view details. Scroll sideways on small screens.</span>
+    </div>
+    <div class="timeline-inner">
+      <div class="bar" id="bar" aria-hidden="true"></div>
+      <div class="nodes" id="nodes" role="tablist" aria-label="Search milestones"></div>
+    </div>
+  </section>
+
+  <section class="detail" id="detail" role="tabpanel" aria-live="polite" tabindex="-1"></section>
+
+  <footer>
+    <p class="disclaimer-foot"><strong>Disclaimer:</strong> This is an unofficial, student-made website. It is not affiliated with, endorsed by, or operated by the College of Lake County. The College is not responsible for its content.</p>
+    Dates come from CLC's presidential search page and Board Chair messages. Check the official page for the latest updates.
+  </footer>
+</main>
+
+<script>
+(function () {
+  var PHASE_ONE = {
+    charge: "Gives final input on the presidential profile before Board approval, screens applicants, selects and interviews semifinalists, and recommends three to four finalists to the Board of Trustees.",
+    members: [
+      ["Allena Barbato", "CLC Trustee and Search Committee Chair"],
+      ["Jan Gibson", "CLC Trustee"],
+      ["Michael Karner", "Director, Lake County Regional Office of Education"],
+      ["Allison Bolisay", "CLC Student Trustee"],
+      ["Ben Shin", "Career Specialist, Lake County Workforce Development"],
+      ["Myra Gaytan", "Executive Director, University Center of Lake County"],
+      ["Jay Wiltshire", "Instructor, Academic Success"],
+      ["Ken Kikuchi", "Instructor, Psychology"],
+      ["Nancy Cook", "Professor Emerita, Art"],
+      ["Jesus Ruiz", "Dean, Lakeshore Campus"],
+      ["Leon Hussissian", "Media Technology Specialist, Information Technology"],
+      ["James Beckom", "Vice President, Business Services and Finance"],
+      ["Michelle Grace", "Director, Student Health and Wellness"]
+    ]
+  };
+  var PHASE_TWO = {
+    charge: "Interviews the finalists during their campus visits and gives comprehensive feedback to the Board of Trustees.",
+    members: [
+      ["Allena Barbato", "CLC Trustee and Search Committee Chair"],
+      ["Kevin Considine", "President and Chief Executive Officer, Lake County Partners"],
+      ["Maria Rivera-Ripoll", "CLC Foundation Board Member"],
+      ["Anne O\u2019Connell", "CLC Retiree"],
+      ["Mark Coykendall", "Instructor, Biology and Faculty Senate Chair"],
+      ["Chris Utecht", "Instructor, Criminal Justice and Faculty Union President"],
+      ["Karen Florian", "Adjunct Faculty, Mathematics and Adjunct Faculty Union President"],
+      ["Tricia Rosado", "Dean, Southlake Campus"],
+      ["Troy Dawson", "HVAC Engineer and Staff Council Union President"]
+    ]
+  };
+
+  var BASE = "https://www.clcillinois.edu/news-and-events/news/article/2026/";
+  function msg(path, label) { return ' <a href="' + BASE + path + '" target="_blank" rel="noopener">' + (label || "Read the message") + '</a>'; }
+
+  var stages = [
+    {
+      id: "jul", month: "Jul", year: 2026, start: new Date(2026, 6, 1), range: "July 2026",
+      caption: "Search committees established by the Board",
+      title: "Search committees are established",
+      summary: "The Board of Trustees partnered with ACCT Searches to lead the search, and formed a presidential search committee, divided into two phases, to assist. There is no co-chair.",
+      facts: [
+        ["May 20", "Preliminary steps taken. The Board is supported by ACCT and CLC Human Resources." + msg("05/20/message-from-clc-board-chair-allena-barbato---presidential-search--may-20--2026")],
+        ["July 1", "Board Chair outlines key milestones: committee formation, community input, recruitment, interviews and finalist visits." + msg("07/01/message-from-clc-board-chair-allena-barbato---presidential-search--july-1--2026")],
+        ["Aug 20", "The 21 committee participants are shared with the community by email."],
+        ["Sept 29", "Board announces the two-phase committee structure to strengthen stakeholder engagement." + msg("09/30/message-from-clc-board-chair-allena-barbato---presidential-search--september-29--2026")]
+      ],
+      note: "Search consultant: Keith Miller, Ph.D., ACCT Searches, which has conducted more than 500 community college searches.",
+      people: ["one", "two"]
+    },
+    {
+      id: "aug", month: "Aug", year: 2026, start: new Date(2026, 7, 1), range: "August 2026",
+      caption: "Community forums on August 23 shape the profile",
+      title: "The community shapes the presidential profile",
+      summary: "CLC launched the search by building a Presidential Profile with staff, faculty, students and community members. Feedback from open forums and surveys later led the Board to strengthen the search process.",
+      facts: [
+        ["Aug 10", "Board Chair announces the launch of the search and the profile development." + msg("08/11/message-from-clc-board-chair-allena-barbato---presidential-search--august-10--2026")],
+        ["Aug 23", "Open forums are hosted in person at all campuses, where the community plays a key role in shaping the profile."]
+      ]
+    },
+    {
+      id: "oct", month: "Oct", year: 2026, start: new Date(2026, 9, 1), range: "October \u2013 November 2026",
+      caption: "Profile approved Oct 8; applications open Oct 9",
+      title: "Profile approved and recruitment opens",
+      summary: "After the Board approved the Presidential Profile, the search officially opened for nominations and applications. Extensive advertising is placed while Dr. Miller reaches out to prospective leaders in higher education and other relevant sectors whose experience fits the profile.",
+      facts: [
+        ["Oct 8", "Board approves the Presidential Profile at a Committee of the Whole meeting."],
+        ["Oct 9", "The search opens for nominations and applications."],
+        ["Oct\u2013Nov", "Recruitment period: advertising and active outreach by the search consultant."]
+      ],
+      link: ["View the CLC Presidential Profile", "https://www.clcillinois.edu/aboutclc/college-leadership/presidential-search/presidential-profile"]
+    },
+    {
+      id: "nov", month: "Nov", year: 2026, start: new Date(2026, 10, 1), range: "November \u2013 December 2026",
+      caption: "Phase One reviews applications; semifinalist interviews in early December",
+      title: "Applications are screened and semifinalists interviewed",
+      summary: "The Phase One Committee reviews applications during November and identifies semifinalists for interviews in early December. It then recommends three to four finalists to the Board of Trustees.",
+      facts: [
+        ["November", "Phase One Committee reviews applications."],
+        ["Early Dec", "Semifinalist interviews."],
+        ["After", "Three to four finalists are recommended to the Board of Trustees."]
+      ],
+      people: ["one"]
+    },
+    {
+      id: "dec", month: "Dec", year: 2026, start: new Date(2026, 11, 1), range: "December 2026",
+      caption: "Finalist visit schedule announced",
+      title: "Finalist visit schedule is announced",
+      summary: "CLC will announce the schedule for finalist campus visits, including interview dates and open forum opportunities.",
+      facts: [
+        ["December", "Finalist visit schedule, interview dates and open forum opportunities are announced."]
+      ]
+    },
+    {
+      id: "jan", month: "Jan", year: 2027, start: new Date(2027, 0, 1), range: "January 2027",
+      caption: "Finalists on campus; Phase Two interviews",
+      title: "Finalists visit campus",
+      summary: "Finalists are expected on campus for interviews and forums during the last week of January 2027. The Phase Two Committee interviews the finalists and gives comprehensive feedback to the Board.",
+      facts: [
+        ["Last week", "Finalist interviews and open forums on campus (anticipated)."],
+        ["Feedback", "Input gathered from the Phase Two Committee and forums goes to the Board of Trustees."]
+      ],
+      people: ["two"]
+    },
+    {
+      id: "feb", month: "Feb", year: 2027, start: new Date(2027, 1, 1), range: "February 2027",
+      caption: "Board appoints the next president",
+      title: "The Board appoints the next president",
+      summary: "Board action to appoint the next president is expected by mid-February 2027, informed by the feedback gathered during finalist visits.",
+      facts: [
+        ["Mid-Feb", "Board vote to appoint the next president (expected)."]
+      ]
+    },
+    {
+      id: "jun", month: "Jun\u2013Jul", year: 2027, start: new Date(2027, 5, 1), range: "June \u2013 July 2027",
+      caption: "President-elect begins",
+      title: "The new president starts",
+      summary: "The president-elect\u2019s start date will be set based on their availability and is anticipated for June or July 2027.",
+      facts: [
+        ["Jun\u2013Jul", "President-elect\u2019s start date (anticipated)."]
+      ]
+    }
+  ];
+
+  var today = new Date();
+  var currentIdx = -1;
+  stages.forEach(function (s, i) { if (s.start <= today) currentIdx = i; });
+  stages.forEach(function (s, i) {
+    s.status = currentIdx === -1 ? "upcoming" : (i < currentIdx ? "done" : (i === currentIdx ? "current" : "upcoming"));
+  });
+
+  var barEl = document.getElementById("bar");
+  var nodesEl = document.getElementById("nodes");
+  var detailEl = document.getElementById("detail");
+  var summaryEl = document.getElementById("summary");
+  var selected = currentIdx >= 0 ? currentIdx : 0;
+  var phaseTab = "one";
+
+  // Status summary
+  (function () {
+    var cur = currentIdx >= 0 ? stages[currentIdx] : null;
+    var nxt = stages[currentIdx + 1] || null;
+    function stat(k, v, s) { return '<div class="stat"><p class="k">' + k + '</p><p class="v">' + v + '</p><p class="s">' + s + '</p></div>'; }
+    summaryEl.innerHTML =
+      stat("Current stage", cur ? cur.title : "Search not yet started", cur ? cur.range : "") +
+      stat("Next milestone", nxt ? nxt.title : "Search complete", nxt ? nxt.range : "") +
+      stat("Board appointment", "Mid-February 2027", "Start date June or July 2027");
+  })();
+
+  for (var i = 0; i < 8; i++) {
+    var seg = document.createElement("div");
+    seg.className = "seg" + (i === 7 ? " last" : "") + (i >= currentIdx ? " future" : "");
+    barEl.appendChild(seg);
+  }
+
+  stages.forEach(function (s, i) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("role", "tab");
+    b.id = "tab-" + s.id;
+    b.className = "node " + (s.status === "done" ? "past" : s.status);
+    b.innerHTML =
+      '<span class="lab"><span class="pill">' + s.month + ' ' + s.year + '</span><span class="here">' + (s.status === "current" ? "We are here" : "") + '</span></span>' +
+      '<span class="dot-row"><span class="dot"></span></span>' +
+      '<span class="cap">' + s.caption + '</span>';
+    b.addEventListener("click", function () { select(i, false); });
+    b.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") { e.preventDefault(); select(Math.min(i + 1, stages.length - 1), true); }
+      if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); select(Math.max(i - 1, 0), true); }
+      if (e.key === "Home") { e.preventDefault(); select(0, true); }
+      if (e.key === "End") { e.preventDefault(); select(stages.length - 1, true); }
+    });
+    nodesEl.appendChild(b);
+  });
+
+  function peopleBlock(s) {
+    var kinds = s.people;
+    var html = '<div class="col"><h3>Who is involved</h3>';
+    if (kinds.length > 1) {
+      html += '<div class="tabs">' +
+        '<button type="button" class="tab" data-phase="one" aria-pressed="' + (phaseTab === "one") + '">Phase One</button>' +
+        '<button type="button" class="tab" data-phase="two" aria-pressed="' + (phaseTab === "two") + '">Phase Two</button></div>';
+    } else {
+      phaseTab = kinds[0];
+      html += '<p class="charge"><b>' + (kinds[0] === "one" ? "Phase One Search Committee" : "Phase Two Search Committee") + '</b></p>';
+    }
+    var data = phaseTab === "one" ? PHASE_ONE : PHASE_TWO;
+    html += '<p class="charge">' + data.charge + '</p><ul class="people">';
+    data.members.forEach(function (m) { html += '<li><b>' + m[0] + '</b><span>' + m[1] + '</span></li>'; });
+    html += '</ul></div>';
+    return html;
+  }
+
+  function render(animate) {
+    var s = stages[selected];
+    var chipText = s.status === "done" ? "Completed" : (s.status === "current" ? "In progress" : "Upcoming");
+    var hasPeople = !!s.people;
+    var html =
+      '<div class="detail-head"><h2>' + s.title + '</h2><span class="chip ' + s.status + '">' + chipText + '</span><p class="when">' + s.range + '</p></div>' +
+      '<div class="detail-body ' + (hasPeople ? 'cols-3' : 'cols-2') + '">' +
+        '<div class="col overview"><h3>Overview</h3><p>' + s.summary + '</p>' +
+          (s.note ? '<p class="note">' + s.note + '</p>' : '') +
+          (s.link ? '<p><a href="' + s.link[1] + '" target="_blank" rel="noopener"><b>' + s.link[0] + '</b></a></p>' : '') +
+        '</div>' +
+        '<div class="col"><h3>Key dates</h3><table class="facts"><tbody>' +
+          s.facts.map(function (f) { return '<tr><td class="d">' + f[0] + '</td><td>' + f[1] + '</td></tr>'; }).join("") +
+        '</tbody></table></div>' +
+        (hasPeople ? peopleBlock(s) : '') +
+      '</div>' +
+      '<div class="nav">' +
+        '<button type="button" id="prev"' + (selected === 0 ? ' disabled' : '') + '>Previous</button>' +
+        '<button type="button" id="next"' + (selected === stages.length - 1 ? ' disabled' : '') + '>Next</button>' +
+      '</div>';
+    detailEl.innerHTML = html;
+    detailEl.setAttribute("aria-labelledby", "tab-" + s.id);
+
+    if (animate) { detailEl.classList.remove("swap"); void detailEl.offsetWidth; detailEl.classList.add("swap"); }
+
+    document.getElementById("prev").addEventListener("click", function () { select(selected - 1, false, true); });
+    document.getElementById("next").addEventListener("click", function () { select(selected + 1, false, true); });
+    Array.prototype.forEach.call(detailEl.querySelectorAll(".tab"), function (t) {
+      t.addEventListener("click", function () { phaseTab = t.getAttribute("data-phase"); render(false); });
+    });
+  }
+
+  function select(i, focusTab, scrollToTab) {
+    selected = i;
+    var s = stages[i];
+    if (s.people && s.people.length === 1) phaseTab = s.people[0];
+    Array.prototype.forEach.call(nodesEl.children, function (n, idx) {
+      n.setAttribute("aria-selected", idx === i ? "true" : "false");
+      n.tabIndex = idx === i ? 0 : -1;
+    });
+    render(true);
+    if (focusTab) nodesEl.children[i].focus();
+    if (scrollToTab) nodesEl.children[i].scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+  }
+
+  select(selected, false);
+})();
+</script>
+</body>
+</html>
